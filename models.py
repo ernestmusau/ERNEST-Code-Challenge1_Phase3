@@ -1,3 +1,22 @@
+class Author:
+    def __init__(self, name):
+        self.name = name
+        self._articles = []
+
+    def add_article(self, magazine, title):
+        article = Article(self, magazine, title)
+        self._articles.append(article)
+        return article
+
+    @property
+    def articles(self):
+        return self._articles
+
+    @property
+    def topic_areas(self):
+        return {article.magazine.category for article in self._articles}
+
+
 class Magazine:
     _all = []
 
@@ -37,3 +56,25 @@ class Magazine:
         for magazine in cls._all:
             if top_author in {article.author for article in magazine.articles}:
                 return magazine
+
+
+class Article:
+    def __init__(self, author, magazine, title):
+        if len(title) < 3:
+            raise ValueError("Article title must be at least 3 characters long")
+        self._author = author
+        self._magazine = magazine
+        self._title = title
+        magazine.add_article(self)
+
+    @property
+    def author(self):
+        return self._author
+
+    @property
+    def magazine(self):
+        return self._magazine
+
+    @property
+    def title(self):
+        return self._title

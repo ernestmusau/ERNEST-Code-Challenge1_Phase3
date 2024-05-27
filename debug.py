@@ -2,8 +2,8 @@ from author import Author
 from magazine import Magazine
 from article import Article
 
-author1 = Author("John Doe")
-author2 = Author("Jane Smith")
+author1 = Author("Gloria Mumbe")
+author2 = Author("Asher Centric")
 
 mag1 = Magazine("Tech Weekly", "Technology")
 mag2 = Magazine("Health Today", "Health")
